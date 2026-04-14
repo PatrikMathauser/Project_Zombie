@@ -24,7 +24,7 @@ public class Game extends JFrame {
 
         MenuFrame menuFrame = new MenuFrame(mainFrame, this);
 
-        //Nastaven9 velikosti vnitřního okna
+        //Nastavení velikosti vnitřního okna
         mainFrame.setPreferredSize(new Dimension(800, 600));
 
         //Přidá GameFrame do Game
