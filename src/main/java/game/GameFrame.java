@@ -102,6 +102,10 @@ public class GameFrame extends JPanel {
                     return;
                 }
             }
+            if (!this.hasFocus()){
+                this.requestFocusInWindow();
+            }
+
 
             // Aktuální čas
             long now = System.nanoTime();

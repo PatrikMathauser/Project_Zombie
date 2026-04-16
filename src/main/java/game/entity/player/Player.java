@@ -127,7 +127,13 @@ public class Player extends Entity {
         JProgressBar healthBar = this.getHealthBar();
         healthBar.setLocation((int) this.getX() + (this.getWidth() - healthBar.getWidth()) / 2, (int) this.getY() - 30);
         healthBar.setValue(this.getHp());
-        ((JPanel) this.getWindow()).add(healthBar);
+        JPanel panel = (JPanel) getWindow();
+        if (healthBar.getParent() == null) {
+            panel.add(healthBar);
+            panel.revalidate();
+            panel.repaint();
+        }
+        panel.add(healthBar);
 
         double mouseX = MouseInfo.getPointerInfo().getLocation().getX();
         mouseX = mouseX - this.window.getLocationOnScreen().getX();

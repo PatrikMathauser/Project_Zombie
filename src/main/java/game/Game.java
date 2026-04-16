@@ -23,6 +23,7 @@ public class Game extends JFrame {
         JPanel mainFrame = new JPanel(new CardLayout());
 
         MenuFrame menuFrame = new MenuFrame(mainFrame, this);
+        menuFrame.setName("menu");
 
         //Nastavení velikosti vnitřního okna
         mainFrame.setPreferredSize(new Dimension(800, 600));

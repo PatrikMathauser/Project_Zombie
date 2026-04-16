@@ -1,10 +1,13 @@
 package game;
 
+import game.spriteloader.SpriteLoader;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class MenuFrame extends JPanel {
 
+    private static Image wallpaper = SpriteLoader.load("/menu/menuBackground.png");
 
 
     public MenuFrame(JPanel mainFrame, Game game) {
@@ -26,5 +29,11 @@ public class MenuFrame extends JPanel {
 
         add(playButton);
         add(quitButton);
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(wallpaper, 0,0, getWidth(), getHeight(), this);
     }
 }
