@@ -14,10 +14,10 @@ public class Game extends JFrame {
      * Konstruktor vytvoří herní okno a nastaví jeho základní parametry.
      */
     public Game() {
-        // Titulek okna
-        setTitle("Zombie Prototype");
+        // Titulek
+        setTitle("Project Zombie");
 
-        // Zavření okna ukončí celou aplikaci
+        // Zavření okna ukončí celou
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         JPanel mainFrame = new JPanel(new CardLayout());
@@ -25,10 +25,10 @@ public class Game extends JFrame {
         MenuFrame menuFrame = new MenuFrame(mainFrame, this);
         menuFrame.setName("menu");
 
-        //Nastavení velikosti vnitřního okna
+        //Nastavení velikosti vnitřního
         mainFrame.setPreferredSize(new Dimension(800, 600));
 
-        //Přidá GameFrame do Game
+        //Přidá GameFrame do
         setContentPane(mainFrame);
 
         //Pořeší velikosti uvnitř hry pro vytvoření rámečku
