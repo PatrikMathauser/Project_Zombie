@@ -26,7 +26,7 @@ public class Game extends JFrame {
         menuFrame.setName("menu");
 
         //Nastavení velikosti vnitřního
-        mainFrame.setPreferredSize(new Dimension(800, 600));
+        mainFrame.setPreferredSize(new Dimension(1200, 800));
 
         //Přidá GameFrame do
         setContentPane(mainFrame);

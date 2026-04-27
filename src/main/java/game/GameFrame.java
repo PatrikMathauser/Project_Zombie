@@ -171,7 +171,7 @@ public class GameFrame extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        g.drawImage(wallpaper, 0, 0, 800, 600, this);
+        g.drawImage(wallpaper, 0, 0, 1200, 800, this);
 
         // Vykreslí statické tělo lodě
         player.draw_static(g);
