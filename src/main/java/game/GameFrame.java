@@ -7,6 +7,7 @@ import game.listener.Keyboard;
 import game.manager.CollisionManager;
 import game.manager.WaveManager;
 import game.spriteloader.SpriteLoader;
+import ui.ShadowLabel;
 
 import javax.imageio.ImageIO;
 import javax.smartcardio.Card;
@@ -79,9 +80,11 @@ public class GameFrame extends JPanel {
      */
     public GameFrame(JPanel mainFrame) {
 
+        setUp(mainFrame);
+
         CollisionManager collisionManager = new CollisionManager(this);
 
-        setLayout(new GridBagLayout());
+        setLayout(null);
 
         // Panel musí být fokusovatelný, aby mohl přijímat klávesy
         setFocusable(true);
@@ -171,7 +174,7 @@ public class GameFrame extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        g.drawImage(wallpaper, 0, 0, 1200, 800, this);
+        g.drawImage(wallpaper, 0, 0, 800, 600  , this);
 
         // Vykreslí statické tělo lodě
         player.draw_static(g);
@@ -213,5 +216,17 @@ public class GameFrame extends JPanel {
 
     public void setReloadTime(int reloadTime) {
         this.reloadTime = reloadTime;
+    }
+
+    private void setUp(JPanel frame) {
+        JLabel label = new ShadowLabel();
+        label.setText("");
+        label.setFont(new Font("Arial", Font.BOLD, 48));
+        label.setOpaque(false);
+        label.setForeground(Color.WHITE);
+        label.setHorizontalAlignment(SwingConstants.CENTER);
+        label.setName("Announcement");
+        label.setBounds((frame.getWidth() - 400) / 2, 0, 600, 100);
+        this.add(label);
     }
 }

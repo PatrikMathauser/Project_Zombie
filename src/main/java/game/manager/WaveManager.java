@@ -91,7 +91,6 @@ public class WaveManager {
                 currentWave++;
                 enemyCounter = 0;
                 waveCooldown = 0;
-                //TODO pruhledne pozadi + centering
                 makeAnnouncement("WAVE " + currentWave + " HAS STARTED");
             }
         }
@@ -116,22 +115,20 @@ public class WaveManager {
     }
 
     public void makeAnnouncement(String announcementText) {
-        JLabel label = new JLabel(announcementText);
-        label.setFont(new Font("Arial", Font.BOLD, 64));
-        label.setOpaque(false);
-        label.setForeground(Color.BLACK);
-        label.setHorizontalAlignment(SwingConstants.CENTER);
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.anchor = GridBagConstraints.NORTH;
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.weightx = 0.75;
-        gbc.weighty = 1.0;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        window.add(label, gbc);
-        new Timer(5000, e -> window.remove(label)).start();
-        window.revalidate();
-        window.repaint();
+        for (Component component : window.getComponents()) {
+            if ("Announcement".equals(component.getName())) {
+                JLabel label = (JLabel) component;
+                label.setText(announcementText);
+                Timer timer = new Timer(4000, e -> {
+                    label.setText("");
+                });
+                timer.setRepeats(false);
+                timer.start();
+
+
+            }
+        }
+
     }
 
 

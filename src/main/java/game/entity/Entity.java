@@ -47,7 +47,9 @@ public class Entity {
         this.healthBar.setValue(hp);
         this.healthBar.setForeground(Color.GREEN);
         this.healthBar.setBackground(Color.RED);
-        this.healthBar.setPreferredSize(new Dimension(100,20));
+
+        this.healthBar.setBounds((int) getX(), (int) getY(), 100,20);
+
     }
 
 

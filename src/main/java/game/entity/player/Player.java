@@ -133,7 +133,6 @@ public class Player extends Entity {
             panel.revalidate();
             panel.repaint();
         }
-        panel.add(healthBar);
 
         double mouseX = MouseInfo.getPointerInfo().getLocation().getX();
         mouseX = mouseX - this.window.getLocationOnScreen().getX();
