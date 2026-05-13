@@ -17,11 +17,13 @@ public class Game extends JFrame {
         // Titulek
         setTitle("Project Zombie");
 
-        // Zavření okna ukončí celou
+        // Zavření okna ukončí celou hru
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
+        // Vytvoření okna pro menu
         JPanel mainFrame = new JPanel(new CardLayout());
 
+        // Vytvoření menu
         MenuFrame menuFrame = new MenuFrame(mainFrame, this);
         menuFrame.setName("menu");
 
@@ -40,6 +42,7 @@ public class Game extends JFrame {
         // Umístí okno doprostřed obrazovky
         setLocationRelativeTo(null);
 
+        // Vytvoříme menu panel
         mainFrame.add(menuFrame, menuFrame.getName());
         CardLayout cl = (CardLayout) mainFrame.getLayout();
         cl.show(mainFrame, "menu");

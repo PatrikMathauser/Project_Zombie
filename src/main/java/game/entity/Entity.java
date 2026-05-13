@@ -9,11 +9,8 @@ import java.awt.*;
  * Obsahuje pozici, velikost a logiku pohybu.
  */
 public class Entity {
-
-
     // Rychlost animace (0.0333s = 33.3 ms na snímek → 30 FPS animace)
     private final double frameSpeed = 0.0333;
-
 
     private int hp; // Health Points
 
@@ -23,6 +20,7 @@ public class Entity {
     private boolean isAttack = false;
     private boolean isLive = true;
 
+    // Reprezentuje opak otočení hráče
     private boolean isOpposite = false;
 
     private Rectangle hitbox;
@@ -32,11 +30,13 @@ public class Entity {
 
     /**
      * Konstruktor nastaví pozici a velikost entity.
-     *
      * @param x počáteční X pozice
      * @param y počáteční Y pozice
      * @param width šířka
      * @param height výška
+     * @param speed rychlost
+     * @param hp životy
+     * @param attackDamage poškození
      */
     public Entity(int x, int y, int width, int height, int speed, int hp, int attackDamage) {
         this.speed = speed;
