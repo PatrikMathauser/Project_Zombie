@@ -3,6 +3,9 @@ package ui;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Reprezentuje komponent obrázku
+ */
 public class ImageComponent extends JComponent {
     private Image image;
 
@@ -10,6 +13,12 @@ public class ImageComponent extends JComponent {
 
     private int height;
 
+    /**
+     * Konstruktor komponenty
+     * @param image obrázek
+     * @param width šířka
+     * @param height výška
+     */
     public ImageComponent(Image image, int width, int height) {
         this.image = image;
         this.width = width;

@@ -18,13 +18,13 @@ public class Entity {
 
     private int speed;
     private boolean isAttack = false;
-    private boolean isLive = true;
 
     // Reprezentuje opak otočení hráče
     private boolean isOpposite = false;
 
     private Rectangle hitbox;
 
+    // Ukazatel životů
     private final JProgressBar healthBar = new JProgressBar();
 
 
@@ -87,17 +87,8 @@ public class Entity {
     public boolean isAttack() {
         return isAttack;
     }
-
-    public boolean isLive() {
-        return isLive;
-    }
-
     public void setAttack(boolean attack) {
         isAttack = attack;
-    }
-
-    public void setLive(boolean live) {
-        isLive = live;
     }
 
     public void setX(double x) {

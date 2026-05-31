@@ -18,6 +18,7 @@ public class Enemy extends Entity {
     private static final Image[] ENEMY_ATTACK_FRAMES =
             SpriteLoader.getFrames("/enemy/Attack/", 460, 11);
 
+    // Pronásledovaný hráč
     private final Player playerToFollow;
 
     private int enemyWalkFrame = 0;
@@ -25,21 +26,33 @@ public class Enemy extends Entity {
 
     private double timer = 0;
 
-
+    /**
+     * Konstruktor nepřítele
+     * @param x - souřadnice X
+     * @param y - souřadnice Y
+     * @param width - šířka
+     * @param height - výška
+     * @param hp - životy nepřítele
+     * @param player - hráč, kterého chceme pronásledovat
+     */
     public Enemy(int x, int y, int width, int height, int hp, Player player) {
         super(x, y, width, height, 100, hp, 20);
         this.playerToFollow = player;
     }
 
+    // Vracíme zda-li útok proběhl
     public boolean isAttackDone() {
         double attackTimer = timer + GameFrame.getDt();
         if (attackTimer >= getFrameSpeed()) {
-            return enemyAttackFrame == 10; // poslední snímek animace
+            // Vracíme zda-li je poslední snímek animace
+            return enemyAttackFrame == 10; // poslední snímek animace = 10
         }
         return false;
     }
 
-
+    /**
+     * Vykreslíme healthBar a animaci nepřátele
+     */
     @Override
     public void draw_animation(Graphics g){
         JProgressBar healthBar = this.getHealthBar();
@@ -77,9 +90,10 @@ public class Enemy extends Entity {
         double dt = GameFrame.getDt();
         double x = getX();
         double y = getY();
-
+        // Vzdálenost enemy od hráče
         double distanceX = playerToFollow.getX() - x;
         double distanceY = playerToFollow.getY() - y;
+        // Pronásledování hráče - https://stackoverflow.com/questions/59828650/how-to-make-enemy-follow-player-pygame
         double angle = Math.atan2(distanceY, distanceX);
         setX(x + getSpeed() * Math.cos(angle) * dt);
         setY(y + getSpeed() * Math.sin(angle) * dt);

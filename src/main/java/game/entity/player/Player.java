@@ -15,7 +15,7 @@ import java.util.List;
 
 public class Player extends Entity {
 
-    // Animace motoru (8 snímků)
+    // Animace chození
     private static final Image[] WALK_FRAMES =
             SpriteLoader.getFrames("/player/Run/", 1, 15);
     private static final Image[] WALK_FIRE_FRAMES =
@@ -29,7 +29,7 @@ public class Player extends Entity {
 
     /** Proměnné animace motoru */
 
-    // Aktuální snímek animace motoru
+    // Aktuální snímek animace chození
     private int walkFrame = 0;
     private int idleFrame = 0;
 
@@ -45,7 +45,7 @@ public class Player extends Entity {
     private int magazineBulletCount = 6;
 
     private ArrayList<Bullet> bullets = new ArrayList<>();
-
+    //hlavní herní okno
     private Component window;
 
     /**
@@ -98,6 +98,7 @@ public class Player extends Entity {
         return window;
     }
 
+    // Pozice hlavně X
     public double getBarrelX() {
         double half = getWidth() / 2.0;
         double distance = 50;
@@ -106,6 +107,7 @@ public class Player extends Entity {
         }
         return getX() + half + distance;
     }
+    // Pozice hlavně Y
     public double getBarrelY() {
         double distance = 56;
         return getY() + distance;
@@ -120,7 +122,7 @@ public class Player extends Entity {
     }
 
     /**
-     * Vykreslí animaci motoru – používá engineFrame index.
+     * Vykreslí healthBar a animaci hráče.
      */
     @Override
     public void draw_animation(Graphics g){
@@ -133,7 +135,7 @@ public class Player extends Entity {
             panel.revalidate();
             panel.repaint();
         }
-
+        // Otáčení hráče
         double mouseX = MouseInfo.getPointerInfo().getLocation().getX();
         mouseX = mouseX - this.window.getLocationOnScreen().getX();
         boolean isOpposite = mouseX < getX() + getWidth() / 2.0;
@@ -147,7 +149,7 @@ public class Player extends Entity {
             oppositeX = getWidth();
             oppositeWidth = -1;
         }
-
+        // Vykreslení animace hráče
         if (getWalking()) {
             if (getShooting()) {
                 g.drawImage(WALK_FIRE_FRAMES[walkFrame], (int) getX() + oppositeX, (int) getY(), getWidth() * oppositeWidth, getHeight(), null);
@@ -166,10 +168,9 @@ public class Player extends Entity {
     @Override
     public void update(){
 
-        /** Pohyb lodi podle stisknutých kláves */
+        /** Pohyb hráče podle stisknutých kláves */
 
         Keyboard input = GameFrame.getInput();
-        MouseListener mouseInput = window.getMouseListeners()[0];
         double dt = GameFrame.getDt();
         double speed = getSpeed();
         double x = getX();
@@ -203,7 +204,7 @@ public class Player extends Entity {
         }
 
         if (isHorizontal && isVertical) {
-            // 1.414 je delka prepony, timto normalizujeme diagonalni chod
+            // 1.414 je delka prepony, timto normalizujeme diagonalni chod, Pythagorova věta
             x = getX() + (x - getX()) / 1.414;
             y = getY() + (y - getY()) / 1.414;
         }
@@ -225,12 +226,11 @@ public class Player extends Entity {
         }
 
 
-        /** Animace motoru */
+        /** Animace hráče */
         // Přičti čas od posledního snímku
         timer += dt;
 
 
-        // Pokud uplynulo více než engineFrameSpeed → posuň animaci
         if (timer >= getFrameSpeed()) {
             timer = 0;      // restart timeru
             if (getWalking()) {

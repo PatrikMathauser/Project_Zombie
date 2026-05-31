@@ -9,17 +9,16 @@ import java.awt.geom.AffineTransform;
 
 public class Bullet extends Entity {
 
-    /**
-     * Konstruktor nastaví pozici a velikost entity.
-     *
-     * @param x      počáteční X pozice
-     * @param y      počáteční Y pozice
-     * @param width  šířka
-     * @param height výška
-     */
-
     private final double angleRadians;
 
+    /**
+     * Konstruktor náboje
+     * @param x - souřadnice X
+     * @param y - souřadnice Y
+     * @param width - šířka
+     * @param height - výška
+     * @param angleRadians - úhel v radiánech o který je náboj otočený
+     */
     public Bullet(int x, int y, int width, int height, double angleRadians) {
         super(x, y, width, height, 400, 1, 10);
         this.angleRadians = angleRadians;
@@ -29,6 +28,7 @@ public class Bullet extends Entity {
         return angleRadians;
     }
 
+    // Vykreslí animaci náboje
     @Override
     public void draw_animation(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
@@ -40,6 +40,7 @@ public class Bullet extends Entity {
 
     @Override
     public void update() {
+        // Výpočet souřadnic podle úhlu a goniometrických funkcí
         double dt = GameFrame.getDt();
         setX(getX() + Math.cos(getAngle()) * getSpeed() * dt);
         setY(getY() + Math.sin(getAngle()) * getSpeed() * dt);
